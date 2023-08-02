@@ -1,5 +1,5 @@
 {
-  "name": "zero-api-app",
+  "name": "kneo-app",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
@@ -16,6 +16,9 @@
     "body-parser": "^1.20.1",
     "express": "^4.17.3",
     "uuid": "^9.0.0",
-    "cors":"*"
+    "cors":"*",
+    "dotenv": "^16.3.1",
+    "google-auth-library": "^9.0.0",
+    "googleapis": "^123.0.0"
   }
 }
