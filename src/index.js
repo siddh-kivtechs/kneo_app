@@ -50,7 +50,7 @@ async function connectToGoogleSheets(auth) {
   try {
     const sheets = google.sheets({ version: 'v4', auth });
 
-    const spreadsheetId = '1g7QscbQ4zt_qYgRoPNnWVeC5iFJCs_IfdN0T09w6fgY';
+    const spreadsheetId = process.env.google_spreadsheet;
     const range = 'Sheet1!A1:B5'; // Example range, change it to match your desired range
 
     const response = await sheets.spreadsheets.values.get({
