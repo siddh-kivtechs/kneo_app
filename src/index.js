@@ -1,32 +1,9 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
 const { google } = require('googleapis');
-const dotenv = require('dotenv');
+
 const readline = require('readline');
 
-const app = express();
-const PORT = process.env.PORT || 3000;
-
+const dotenv = require('dotenv');
 dotenv.config();
-
-app.use(cors());
-
-app.use(bodyParser.json({ limit: '1mb' }));
-app.use(bodyParser.urlencoded({ limit: '1mb', extended: true }));
-
-app.get("/", (req, res) => {
-  let data = {};
-  data["GET"] = req.query;
-  res.send(data);
-});
-
-app.post("/", (req, res) => {
-  console.log("POST request received");
-  let data = {};
-  data['POST'] = req.body;
-  res.send(data);
-});
 
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 const CLIENT_ID = process.env.CLIENT_ID;
@@ -74,7 +51,7 @@ async function connectToGoogleSheets(auth) {
     const sheets = google.sheets({ version: 'v4', auth });
 
     const spreadsheetId = '1g7QscbQ4zt_qYgRoPNnWVeC5iFJCs_IfdN0T09w6fgY';
-    const range = 'Sheet1!A1:B5';
+    const range = 'Sheet1!A1:B5'; // Example range, change it to match your desired range
 
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId,
@@ -105,7 +82,3 @@ async function run() {
 }
 
 run();
-
-app.listen(PORT, () => {
-  console.log(`API is listening on port ${PORT}`);
-});
